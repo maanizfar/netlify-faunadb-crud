@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { readAllTodos } from "./utils/api";
 
 import TodoCreator from "./components/todo-creator";
+import Todo from "./components/todo";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -22,7 +23,12 @@ function App() {
 
       <ul>
         {todos.map((todo) => (
-          <li key={todo.data.title}>{todo.data.title}</li>
+          <Todo
+            key={todo.ref["@ref"].id}
+            title={todo.data.title}
+            id={todo.ref["@ref"].id}
+            onChange={refreshTodos}
+          />
         ))}
       </ul>
     </div>
